@@ -19,10 +19,17 @@ Des vidéos arrivent en flux continu sur deux nœuds Edge aux ressources limité
 | Levée des risques (sprint 0) | En cours |
 | Implémentation, mesures, rapport | À venir — voir [`docs/SPRINTS.md`](docs/SPRINTS.md) |
 
+## Énoncé
+
+- Dépôt du cours : https://github.com/djobiii2078/cloud_course_resources
+- Énoncé du projet (PDF officiel) : https://github.com/djobiii2078/cloud_course_resources/blob/main/projet/Projet_Cloud_Edge_dark_v4.pdf
+- Copie, résumé des exigences et notes de l'explication orale : [`docs/enonce/`](docs/enonce/README.md)
+
 ## Documentation
 
 | Document | Contenu |
 |---|---|
+| [`docs/enonce/`](docs/enonce/README.md) | Énoncé, barème, livrables, notes de l'explication orale du professeur |
 | [`docs/JOURNAL.md`](docs/JOURNAL.md) | Journal de suivi : toutes les décisions, les options écartées et leurs raisons, le glossaire des notions |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Vue d'ensemble de l'architecture retenue |
 | [`docs/PROTOCOLE.md`](docs/PROTOCOLE.md) | Protocole expérimental : comment on mesure et on prouve |

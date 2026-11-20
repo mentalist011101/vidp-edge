@@ -13,6 +13,8 @@ VidP-Edge est un pipeline vidéo adaptatif Edge–Cloud (projet 1 de l'énoncé 
 
 La note porte surtout sur l'infrastructure, la résilience et **la preuve par la mesure** (20 % pour les mesures et la méthodologie). La qualité du modèle d'IA n'est pas notée. « Une fonctionnalité non mesurée ne constitue pas une preuve de fonctionnement. »
 
+L'énoncé officiel, le barème, les livrables et les notes de l'explication orale du professeur sont dans [`docs/enonce/`](docs/enonce/README.md). Dépôt du cours : https://github.com/djobiii2078/cloud_course_resources (il contient aussi les cours sur la virtualisation, l'orchestration, la communication inter-services et la disponibilité, utiles pour justifier les choix).
+
 ## 2. Source de vérité : le journal
 
 Toutes les décisions d'architecture sont dans [`docs/JOURNAL.md`](docs/JOURNAL.md), avec les options écartées et les raisons. **Avant toute modification structurante, lis la section concernée du journal.**
