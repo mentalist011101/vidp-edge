@@ -18,5 +18,22 @@ Le modèle **base** ou **small** de faster-whisper (int8) suit-il un flux en dir
 - Si les deux passent : prendre le plus précis (small).
 - Si aucun ne passe : rapporter les chiffres et rouvrir D7 (blocs plus courts, whisper.cpp, ou déport plus fréquent).
 
+## Comment lancer
+
+Dans un Codespace à 2 cœurs, depuis ce dossier :
+
+```bash
+sudo apt-get update && sudo apt-get install -y ffmpeg
+pip install -r requirements.txt
+# déposer la vidéo de test (hors Git) et le texte lu dans reference.txt
+./run_all.sh /chemin/vers/video_test.mp4
+```
+
+- `run_all.sh` découpe l'audio en blocs de 30 s (16 kHz mono), puis mesure 4 configurations : base et small, avec un faisceau de décodage de 5 (valeur par défaut) et de 1 (décodage glouton, plus rapide).
+- `bench.py` mesure une configuration dans son propre processus (pour isoler la mémoire maximale) et écrit `results/<configuration>.json`.
+- `summarize.py` calcule médiane, p95 et maximum du rapport temps de transcription / durée du bloc, le WER contre `reference.txt`, et applique la règle de décision ci-dessus.
+
+Les fichiers `results/*.json` sont les données brutes : ils sont versionnés. Les blocs audio ne le sont pas.
+
 ## Résultat
 _À compléter._
