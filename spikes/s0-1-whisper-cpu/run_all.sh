@@ -3,7 +3,7 @@
 # Usage : ./run_all.sh ma_video.mp4
 set -euo pipefail
 
-SRC="${1:?Donner le chemin de la vidéo ou de l'audio de test}"
+SRC="${1:?Donner le chemin du fichier video ou audio de test}"
 cd "$(dirname "$0")"
 
 echo "== Machine"
