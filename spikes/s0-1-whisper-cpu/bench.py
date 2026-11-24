@@ -18,13 +18,22 @@ import time
 import wave
 from pathlib import Path
 
+import numpy as np
 from faster_whisper import WhisperModel
 
 
-def wav_duration(path: Path) -> float:
-    """Durée d'un fichier WAV en secondes."""
+def load_wav(path: Path) -> tuple[np.ndarray, float]:
+    """Lit un WAV 16 kHz mono 16 bits et renvoie (échantillons float32, durée en s).
+
+    On passe un tableau à Whisper plutôt qu'un chemin : la mesure ne compte que la
+    transcription, et on évite PyAV (incompatibilité de version avec faster-whisper).
+    """
     with wave.open(str(path), "rb") as f:
-        return f.getnframes() / f.getframerate()
+        if f.getframerate() != 16000 or f.getnchannels() != 1 or f.getsampwidth() != 2:
+            raise SystemExit(f"{path.name} : attendu 16 kHz, mono, 16 bits")
+        frames = f.readframes(f.getnframes())
+    audio = np.frombuffer(frames, dtype=np.int16).astype(np.float32) / 32768.0
+    return audio, len(audio) / 16000
 
 
 def main() -> None:
@@ -49,10 +58,10 @@ def main() -> None:
     rows = []
     texts = []
     for i, block in enumerate(blocks):
-        duration = wav_duration(block)
+        audio, duration = load_wav(block)
         start = time.perf_counter()
         # language=None : on laisse Whisper détecter la langue, comme dans le pipeline.
-        segments, info = model.transcribe(str(block), beam_size=args.beam, language=None)
+        segments, info = model.transcribe(audio, beam_size=args.beam, language=None)
         # `segments` est un générateur : la transcription n'a lieu qu'en le parcourant.
         segs = list(segments)
         elapsed = time.perf_counter() - start
